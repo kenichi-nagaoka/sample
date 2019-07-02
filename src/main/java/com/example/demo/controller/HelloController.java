@@ -1,13 +1,8 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.example.demo.form.HelloForm;
 
 @Controller
 @RequestMapping(value = "/")
@@ -21,7 +16,7 @@ public class HelloController {
 	 * @return Hello.html
 	 */
 	@GetMapping
-	public String index(@ModelAttribute HelloForm helloForm) {
+	public String index() {
 		return "sample/Hello";
 	}
 
@@ -33,7 +28,7 @@ public class HelloController {
 	 * @return
 	 */
 	@GetMapping("search")
-	public String register(@Validated HelloForm helloForm, BindingResult result) {
+	public String register() {
 		
 		// 実際にはAPIを呼び出す処理が入る
 		
