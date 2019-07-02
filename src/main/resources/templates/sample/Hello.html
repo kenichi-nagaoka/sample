@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hello</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		alert("a");
+		$('#button01').click(function() {
+			$.ajax({
+				type : 'GET',
+				url : 'http://localhost:8080/search',
+				dataType : 'html',
+				success : function(data) {
+					$('#sample01').append(data);
+				},
+				error : function() {
+					alert('問題がありました。');
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<form method="post" action="/" th:object="${helloForm}">
+		<span th:if="${#fields.hasErrors('notBlankField')}"
+			th:errors="*{notBlankField}" style="color: red"></span><br />
+		検索条件1：<input type="text" name="notBlankField"
+			th:field="*{notBlankField}" /><br /> <span
+			th:if="${#fields.hasErrors('notEmptyField')}"
+			th:errors="*{notEmptyField}" style="color: red"></span><br />
+		検索条件2：<input type="text" name="notEmptyField"
+			th:field="*{notEmptyField}" /><br /> <span
+			th:if="${#fields.hasErrors('notNullField')}"
+			th:errors="*{notNullField}" style="color: red"></span><br />
+		検索条件3：<input type="text" name="notNullField"
+			th:field="*{notNullField}" /><br />
+		<br /> <input type="button" id="button01" value="検索" />
+		<br /> 
+		<div id="sample01">
+		</div>
+	</form>
+</body>
+</html>
